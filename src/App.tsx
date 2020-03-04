@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
+import Navbar from './components/Navbar';
+import FormInput from './components/FormInput';
+
+import 'materialize-css/dist/css/materialize.min.css';
+
 import './App.css';
 
-function App() {
+const App: React.FC = () => {
+  const [todos, setTodos] = useState([]);
+
+  const addTodo = value => {
+    // setTodos({});
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <div className='container' style={{ marginTop: '2rem' }}>
+        <FormInput />
+      </div>
+    </>
   );
-}
+};
 
 export default App;
