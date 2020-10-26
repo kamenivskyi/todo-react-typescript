@@ -1,5 +1,6 @@
 import React from 'react';
 import { ITodo } from '../interfaces';
+import ListItem from './ListItem';
 
 interface ListItemsProps {
   todos: ITodo[]
@@ -9,20 +10,8 @@ interface ListItemsProps {
 const ListItems: React.FC<ListItemsProps> = ({ todos, deleteTodo }) => {
   return (
     <ul className="collection">
-      {todos.map(({ id, title }: ITodo) => (
-        <li className='collection-item' key={id}>
-          <label>
-            <input type="checkbox" name="" id="" />
-            <span>{title}</span>
-          </label>
-          <a 
-            onClick={() => deleteTodo(id)} 
-            href="#" 
-            className="secondary-content"
-          >
-            <i className="material-icons">delete</i>
-          </a>
-        </li>
+      {todos.map(({ ...props }: ITodo) => (
+        <ListItem deleteTodo={deleteTodo} {...props} />
         )
       )}
     </ul>
