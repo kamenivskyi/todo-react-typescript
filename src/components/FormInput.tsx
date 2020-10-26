@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 interface FormInputProps {
-  onAddTodo(title: string): void;
+  addTodo(title: string): void
 }
 
-const FormInput: React.FC<FormInputProps> = ({ onAddTodo }) => {
+const FormInput: React.FC<FormInputProps> = ({ addTodo }) => {
   const [title, setTitle] = useState<string>('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,9 +13,7 @@ const FormInput: React.FC<FormInputProps> = ({ onAddTodo }) => {
 
   const handleKeyPress = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
-      onAddTodo(title);
-      
-      // console.log(title);
+      addTodo(title);
       setTitle('');
     }
   };

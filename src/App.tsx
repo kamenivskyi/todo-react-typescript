@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 
 import Navbar from './components/Navbar';
 import FormInput from './components/FormInput';
+import ListItems from './components/ListItems';
 import { ITodo } from './interfaces';
-
-import 'materialize-css/dist/css/materialize.min.css';
 
 import './App.css';
 
 const App: React.FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
 
-  const onAddTodo = (title: string) => {
+  const addTodo = (title: string) => {
     if (title.trim().length > 3) {
       const newTodo = createNewTodo(title);
       
@@ -33,19 +32,17 @@ const App: React.FC = () => {
     return newTodo; 
   }
 
+  const deleteTodo = (id: number) => {
+    const newTodos = todos.filter(todo => todo.id !== id);
+    setTodos(newTodos);
+  }
+
   return (
     <>
       <Navbar />
       <div className='container' style={{ marginTop: '2rem' }}>
-        <FormInput onAddTodo={onAddTodo} />
-        <ul className="collection">
-          {todos.map((todo: ITodo) => {
-            console.log(todo);
-            return (
-              <li className='collection-item' key={todo.id}>{todo.title}</li>
-            )
-          })}
-        </ul>
+        <FormInput addTodo={addTodo} />
+        <ListItems todos={todos} deleteTodo={deleteTodo} />
       </div>
     </>
   );
