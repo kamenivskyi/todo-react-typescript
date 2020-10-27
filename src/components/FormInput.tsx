@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-interface FormInputProps {
+interface Props {
   addTodo(title: string): void
 }
 
-const FormInput: React.FC<FormInputProps> = ({ addTodo }) => {
+const FormInput: React.FC<Props> = ({ addTodo }) => {
   const [title, setTitle] = useState<string>('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

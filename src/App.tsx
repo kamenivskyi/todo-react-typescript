@@ -33,8 +33,20 @@ const App: React.FC = () => {
   }
 
   const deleteTodo = (id: number) => {
-    const newTodos = todos.filter(todo => todo.id !== id);
-    setTodos(newTodos);
+    const shouldDelete = window.confirm('Ви справді хочете видалити цю задачу?');
+    
+    if (shouldDelete) {
+      setTodos(() => todos.filter(todo => todo.id !== id));
+    }
+  }
+
+  const toggleDone = (id: number) => {
+    setTodos(prev => prev.map(item => {
+      if (item.id === id) {
+        item.done = !item.done;
+      }
+      return item;
+    }))
   }
 
   return (
@@ -42,7 +54,11 @@ const App: React.FC = () => {
       <Navbar />
       <div className='container' style={{ marginTop: '2rem' }}>
         <FormInput addTodo={addTodo} />
-        <ListItems todos={todos} deleteTodo={deleteTodo} />
+        <ListItems 
+          todos={todos}
+          deleteTodo={deleteTodo}
+          toggleDone={toggleDone}
+        />
       </div>
     </>
   );
