@@ -40,13 +40,26 @@ const App: React.FC = () => {
     }
   }
 
-  const toggleDone = (id: number) => {
-    setTodos(prev => prev.map(item => {
+  const toggleProperty = (arr: ITodo[], id: number, propName: string) => {
+    return arr.map((item: any) => {
       if (item.id === id) {
-        item.done = !item.done;
+        item[propName] = !item[propName]
       }
+
       return item;
-    }))
+    })
+  }
+
+  const toggleDone = (id: number) => {
+    const newArr = toggleProperty(todos, id, 'done');
+
+    setTodos(newArr);
+  }
+
+  const toggleImportant = (id: number) => {
+    const newArr = toggleProperty(todos, id, 'important');
+
+    setTodos(newArr);
   }
 
   return (
@@ -58,6 +71,7 @@ const App: React.FC = () => {
           todos={todos}
           deleteTodo={deleteTodo}
           toggleDone={toggleDone}
+          toggleImportant={toggleImportant}
         />
       </div>
     </>

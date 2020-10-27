@@ -1,20 +1,22 @@
 import React from 'react';
-import ListItem from './ListItems/ListItem';
+import ListItem from './ListItem/ListItem';
 
 import { ITodo } from '../interfaces';
 
-type ListItemsProps = {
+type TListItems = {
   todos: ITodo[]
   deleteTodo(id: number): void 
   toggleDone(id: number): void
+  toggleImportant(id: number): void
 }
 
-const ListItems: React.FC<ListItemsProps> = ({ todos, deleteTodo, toggleDone }) => {
+const ListItems: React.FC<TListItems> = ({ todos, deleteTodo, toggleDone, toggleImportant }) => {
   return (
-    <ul className="collection">
+    <ul className="collection" style={{ border: 'none' }}>
       {todos.map((todo: ITodo) => (
         <ListItem 
           deleteTodo={deleteTodo}
+          toggleImportant={toggleImportant}
           toggleDone={toggleDone}  
           key={todo.id} 
           {...todo} 
