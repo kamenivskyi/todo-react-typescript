@@ -10,7 +10,15 @@ type TListItems = {
   toggleImportant(id: number): void
 }
 
-const ListItems: React.FC<TListItems> = ({ todos, deleteTodo, toggleDone, toggleImportant }) => {
+const ListItems: React.FC<TListItems> = ({ 
+  todos, 
+  deleteTodo, 
+  toggleDone, 
+  toggleImportant 
+}) => {
+  if (todos.length === 0) {
+    return <p className='center'>Завдань поки немає</p>
+  }
   return (
     <ul className="collection" style={{ border: 'none' }}>
       {todos.map((todo: ITodo) => (

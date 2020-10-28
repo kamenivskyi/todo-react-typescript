@@ -1,17 +1,18 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-const Navbar: React.FunctionComponent = () => (
-  <nav className='cyan' style={{ padding: '0 15px' }}>
+const Navbar: React.FC = () => (
+  <nav className='teal' style={{ padding: '0 15px' }}>
     <div className='nav-wrapper'>
       <a href='#' className='brand-logo'>
         Logo
       </a>
       <ul className='right hide-on-med-and-down'>
         <li>
-          <a href='collapsible.html'>Список завдань</a>
+          <NavLink to='/'>Список завдань</NavLink>
         </li>
         <li>
-          <a href='badges.html'>Інформація</a>
+          <NavLink to='/about'>Інформація</NavLink>
         </li>
       </ul>
     </div>
